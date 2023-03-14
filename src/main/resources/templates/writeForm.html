@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="utf-8">
+        <title>글쓰기</title>
+</head>
+<body>
+    <h2>글쓰기</h2>
+    <form th:action="writeAction" method="post">
+        <table  th:width="500" th:cellpadding="0" th:cellspacing="0" th:border="1">
+            <tr>
+                <td>이름</td>
+                <td><input th:type="text" th:name="board_name" value="" th:size="50"/></td>        <!--th:value 값에는 공백은 오류가난다 -->
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td><input th:type="text" th:name="board_title" value="" th:size="50" /></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea th:rows="10" th:cols="50" th:name="board_content"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    &nbsp;&nbsp;<input th:type="submit" th:value="글쓰기">&nbsp;&nbsp;
+                    <a th:href="@{listForm}"><input th:type="button" th:value="목록보기"></a>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</body>
+</html>
