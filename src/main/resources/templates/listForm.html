@@ -1,44 +1,53 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>게시판 목록보기</title>
-    <style>
-        * {
-            margin: 0 auto;
-            padding: 0 auto;
-            overflow: hidden;
-        }
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>게시판 목록보기</title>
+  <style>
+    * {
+      margin: 0 auto;
+      padding: 0 auto;
+      overflow: hidden;
+    }
 
-        td,h2{
-            text-align: center;
-        }
-    </style>
+    td,h2{
+      text-align: center;
+    }
+  </style>
+
 </head>
 <body>
-    <h2>게시판 글 목록</h2>
-    <table th:width="500" th:cellpadding="0" th:cellspacing="0" th:border="1">
-        <tr>
-            <th>번호</th>
-            <th>이름</th>
-            <th>제목</th>
-            <th>날짜</th>
-            <th>조회수</th>
-        </tr>
+<h2>게시판 글 목록</h2>
+<table th:width="500" th:cellpadding="0" th:cellspacing="0" th:border="1">
+  <tr>
+    <th>번호</th>
+    <th>이름</th>
+    <th>제목</th>
+    <th>날짜</th>
+    <th>조회수</th>
+  </tr>
 
-            <tr th:each="Board: ${list}">
-                    <td th:text="${Board.board_id}"></td>
-                    <td th:text="${Board.board_name}"></td>
+  <tr th:each="Board: ${list}">
+    <td th:text="${Board.board_id}"></td>
+    <td th:text="${Board.board_name}"></td>
 
-                    <td>
-                     <a th:href="@{/contentForm(board_id=${Board.board_id})}" th:text="${Board.board_title}"></a>   <!--chatgpt 지림 -->
-                    </td>
-                    <td th:text="${#dates.format(Board.board_date,'MM-dd-yy HH:mm')}"></td>
-                    <td th:text="${Board.board_hit}"></td>
-            </tr>
-        <tr>
-            <td colspan="5"><a th:href="@{/writeForm}">글 쓰기</a> </td>
-        </tr>
-    </table>
+    <td>
+      <a th:href="@{/contentForm(board_id=${Board.board_id})}" th:text="${Board.board_title}"></a>   <!--chatgpt 지림 -->
+    </td>
+    <td th:text="${#dates.format(Board.board_date,'MM-dd-yy HH:mm')}"></td>
+    <td th:text="${Board.board_hit}"></td>
+  </tr>
+  <tr>
+    <td colspan="5"><a th:href="@{/board/form}">글 쓰기</a> </td>
+  </tr>
+</table>
+
+<script>
+  window.onpageshow = function (event){
+    if(event.persisted){
+      document.location.reload();
+    }
+  }
+</script>
 </body>
 </html>

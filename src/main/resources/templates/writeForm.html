@@ -4,6 +4,23 @@
         <meta charset="utf-8">
         <title>글쓰기</title>
 </head>
+<script>
+    function updateComment(){
+        var commentBean = {
+            board_name:$("").val(),
+            board_title:$("#").val(),
+            board_content:$("#").val()
+        };
+        $.ajax({
+            url: "/writeAction",
+            type:  "POST",
+            data:commentBean,
+        })
+            .done(function (fragment){
+                $('#').replaceWith(fragment);
+            });
+    }
+</script>
 <body>
     <h2>글쓰기</h2>
     <form th:action="writeAction" method="post">
@@ -22,11 +39,10 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    &nbsp;&nbsp;<input th:type="submit" th:value="글쓰기">&nbsp;&nbsp;
+                    &nbsp;&nbsp;<input id="writeBtn" type="button" value="글쓰기">&nbsp;&nbsp;
                     <a th:href="@{listForm}"><input th:type="button" th:value="목록보기"></a>
                 </td>
             </tr>
-
         </table>
     </form>
 </body>

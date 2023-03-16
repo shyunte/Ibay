@@ -11,4 +11,19 @@
         insert into board (board_name, board_title, board_content, board_date) values ( #{param1},  #{param2},  #{param3}, now())
     </insert>
 
+    <select id="view" resultType="com.Ibay.dto.Board">
+        select * from board where board_id= #{param1}
+    </select>
+
+    <delete id="delete">
+        delete  from board where board_id=#{param1}
+    </delete>
+
+    <update id="update">
+        update board set board_name=#{param2}, board_title=#{param3}, board_content=#{param4} where board_id=#{param1}
+    </update>
+
+    <update id="hit">
+        update board set board_hit=board_hit+1  where board_id=#{param1}
+    </update>
 </mapper>

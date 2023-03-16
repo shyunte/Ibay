@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Ibay.mapper.ReplyMapper">
+
+    <select id="reply_list" resultType="com.Ibay.dto.Reply">
+        select * from reply  where reply_board_id=#{param} order by reply_date desc
+    </select>
+
+
+    <insert id="reply_write">
+        insert into reply ( reply_name, reply_content, reply_date, reply_board_id)
+            values(#{param1}, #{param2}, now(), #{param3})
+    </insert>
+
+
+    <delete id="delete">
+        delete from reply where reply_id=#{param1}
+    </delete>
+
+</mapper>
